@@ -18,17 +18,40 @@ html, body, .stApp, .main {
     font-family: 'Inter', sans-serif !important;
 }
 
-/* ✅ FONDO DEGRADADO VERDE */
+/* ✅ FONDO DEGRADADO FUERTE Y NOTORIO */
 .stApp {
-    background: linear-gradient(180deg, #E7F5E6 0%, #F4FAF2 100%) !important;
+    background: linear-gradient(180deg, #DFF5DA 0%, #F5FFF1 45%, #FFFFFF 100%) !important;
 }
 
-/* ✅ TITULOS LEGIBLES */
+/* ✅ HACER LA TOPBAR TRANSPARENTE */
+header[data-testid="stHeader"] {
+    background-color: rgba(0,0,0,0) !important;
+    color: transparent !important;
+    box-shadow: none !important;
+    border-bottom: none !important;
+}
+
+/* ✅ HACER EL BACKGROUND OSCURO INVISIBLE PERO ⬆️ DEJAR LOS ICONOS */
+header [data-testid="stToolbar"] {
+    background-color: transparent !important;
+}
+
+/* ✅ FONDO INVISIBLE DETRÁS DE ICONOS */
+header[data-testid="stHeader"] > div:first-child {
+    background-color: transparent !important;
+}
+
+/* ✅ ÍCONOS EN VERDE OSCURO (OPCIONAL) */
+header svg {
+    color: #1B4B2E !important;
+}
+
+/* ✅ TÍTULOS */
 h1, h2, h3, h4, label, p, span, div {
     color: #1B4B2E !important;
 }
 
-/* ✅ INPUTS SUPER LEIBLES */
+/* ✅ INPUTS LEGIBLES */
 input[type=text], input[type=password], textarea {
     background-color: #FFFFFF !important;
     color: #1B4B2E !important;
@@ -38,15 +61,12 @@ input[type=text], input[type=password], textarea {
     font-size: 15px !important;
 }
 
-/* ✅ FILE UPLOADER CLARO Y LIMPIO */
+/* ✅ FILE UPLOADER */
 .stFileUploader {
     background-color: white !important;
     border: 2px dashed #9AC89A !important;
     border-radius: 10px !important;
-    padding: 12px !important;
-}
-.stFileUploader label {
-    color: #1B4B2E !important;
+    padding: 14px !important;
 }
 
 /* ✅ BOTÓN */
@@ -64,7 +84,7 @@ div.stButton > button:hover {
     transform: scale(1.02);
 }
 
-/* ✅ REMOVER CUADROS BLANCOS FANTASMAS CREADOS POR STREAMLIT */
+/* ✅ REMOVER CUALQUIER BLOQUE BLANCO CREADO AUTOMÁTICO */
 .css-1cpxqw2, .css-ocqkz7, .css-1v0mbdj, .e1f1d6gn0 {
     background: transparent !important;
     box-shadow: none !important;
@@ -72,6 +92,7 @@ div.stButton > button:hover {
 
 </style>
 """, unsafe_allow_html=True)
+
 
 
 # =========================================================
