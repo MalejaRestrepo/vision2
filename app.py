@@ -13,86 +13,108 @@ st.markdown("""
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
-/* FUENTE GENERAL */
-html, body, .stApp, .main {
+/* ================================
+   ✅ FONDO DEGRADADO GENERAL
+================================ */
+.stApp {
+    background: linear-gradient(180deg, #DFF5DA 0%, #EAFBE2 40%, #F8FFF5 100%) !important;
     font-family: 'Inter', sans-serif !important;
 }
 
-/* ✅ FONDO DEGRADADO FUERTE Y NOTORIO */
-.stApp {
-    background: linear-gradient(180deg, #DFF5DA 0%, #F5FFF1 45%, #FFFFFF 100%) !important;
-}
 
-/* ✅ HACER LA TOPBAR TRANSPARENTE */
+/* ================================
+   ✅ TOP BAR – ÍCONOS VERDE FUERTE + FONDO INVISIBLE
+================================ */
+
+/* Hacer invisible la barra negra */
 header[data-testid="stHeader"] {
     background-color: rgba(0,0,0,0) !important;
-    color: transparent !important;
     box-shadow: none !important;
-    border-bottom: none !important;
 }
 
-/* ✅ HACER EL BACKGROUND OSCURO INVISIBLE PERO ⬆️ DEJAR LOS ICONOS */
-header [data-testid="stToolbar"] {
-    background-color: transparent !important;
-}
-
-/* ✅ FONDO INVISIBLE DETRÁS DE ICONOS */
+/* Hacer invisible el overlay */
 header[data-testid="stHeader"] > div:first-child {
     background-color: transparent !important;
 }
 
-/* ✅ ÍCONOS EN VERDE OSCURO (OPCIONAL) */
+/* Íconos de la top bar en verde fuerte */
 header svg {
-    color: #1B4B2E !important;
+    color: #1FAE3D !important;       /* VERDE VIVO */
+    stroke: #1FAE3D !important;
+    fill: #1FAE3D !important;
 }
 
-/* ✅ TÍTULOS */
-h1, h2, h3, h4, label, p, span, div {
-    color: #1B4B2E !important;
+/* Texto de "Share" también verde fuerte */
+header div {
+    color: #1FAE3D !important;
 }
 
-/* ✅ INPUTS LEGIBLES */
+
+
+/* ================================
+   ✅ FILE UPLOADER VERDE OSCURO CON TEXTO AMARILLO
+================================ */
+
+/* Caja del uploader */
+.stFileUploader {
+    background-color: #0F3A21 !important;     /* VERDE MUY OSCURO */
+    border: 2px dashed #2ECC71 !important;    /* VERDE LIMA */
+    border-radius: 12px !important;
+    padding: 15px !important;
+}
+
+/* Título y textos dentro del uploader */
+.stFileUploader label,
+.stFileUploader div,
+.stFileUploader span,
+.stFileUploader p {
+    color: #FBDD3B !important;      /* AMARILLO LEGIBLE */
+}
+
+/* Botón Browse files */
+.stFileUploader button {
+    background-color: #145A32 !important;     /* verde oscuro */
+    border-radius: 8px !important;
+    border: none !important;
+    color: #FBDD3B !important;                /* amarillo */
+}
+
+/* Hover del botón */
+.stFileUploader button:hover {
+    background-color: #0E4225 !important;
+    color: #FFE96A !important;
+}
+
+
+/* ================================
+   ✅ INPUTS LEÍBLES
+================================ */
 input[type=text], input[type=password], textarea {
     background-color: #FFFFFF !important;
     color: #1B4B2E !important;
     border-radius: 10px !important;
     border: 1.5px solid #9AC89A !important;
     padding: 10px !important;
-    font-size: 15px !important;
 }
 
-/* ✅ FILE UPLOADER */
-.stFileUploader {
-    background-color: white !important;
-    border: 2px dashed #9AC89A !important;
-    border-radius: 10px !important;
-    padding: 14px !important;
-}
 
-/* ✅ BOTÓN */
+/* ================================
+   ✅ BOTÓN ANALIZAR
+================================ */
 div.stButton > button {
-    background-color: #4DAA57 !important;
+    background-color: #1FAE3D !important;
     color: white !important;
     border-radius: 10px !important;
     padding: 10px 20px !important;
     border: none !important;
     font-weight: 600 !important;
-    font-size: 15px !important;
 }
 div.stButton > button:hover {
-    background-color: #3C8F46 !important;
-    transform: scale(1.02);
-}
-
-/* ✅ REMOVER CUALQUIER BLOQUE BLANCO CREADO AUTOMÁTICO */
-.css-1cpxqw2, .css-ocqkz7, .css-1v0mbdj, .e1f1d6gn0 {
-    background: transparent !important;
-    box-shadow: none !important;
+    background-color: #199A34 !important;
 }
 
 </style>
 """, unsafe_allow_html=True)
-
 
 
 # =========================================================
