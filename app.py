@@ -13,109 +13,99 @@ st.markdown("""
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
-/* ================================
-   ✅ FONDO DEGRADADO GENERAL
-================================ */
-.stApp {
-    background: linear-gradient(180deg, #DFF5DA 0%, #EAFBE2 40%, #F8FFF5 100%) !important;
+html, body, .stApp, .main {
     font-family: 'Inter', sans-serif !important;
+    color: #1B4B2E !important;             /* ✅ TEXTO VERDE OSCURO */
 }
 
+/* ✅ FONDO DEGRADADO MÁS NOTORIO */
+.stApp {
+    background: linear-gradient(180deg, #DFF5DA 0%, #E4F8D9 40%, #F5FFF1 100%) !important;
+}
 
-/* ================================
-   ✅ TOP BAR – ÍCONOS VERDE FUERTE + FONDO INVISIBLE
-================================ */
+/* ============================================================
+   ✅ TOP BAR TRANSPARENTE + ÍCONOS VERDE FUERTE
+=============================================================== */
 
-/* Hacer invisible la barra negra */
+/* Fondo transparente */
 header[data-testid="stHeader"] {
     background-color: rgba(0,0,0,0) !important;
     box-shadow: none !important;
 }
 
-/* Hacer invisible el overlay */
+/* El contenedor interno también transparente */
 header[data-testid="stHeader"] > div:first-child {
     background-color: transparent !important;
 }
 
-/* Íconos de la top bar en verde fuerte */
-header svg {
-    color: #1FAE3D !important;       /* VERDE VIVO */
-    stroke: #1FAE3D !important;
-    fill: #1FAE3D !important;
-}
-
-/* Texto de "Share" también verde fuerte */
-header div {
-    color: #1FAE3D !important;
+/* Íconos y el texto Share en VERDE FUERTE */
+header svg, header span, header div {
+    color: #26C430 !important;            /* ✅ VERDE FUERTE */
+    fill: #26C430 !important;
+    stroke: #26C430 !important;
 }
 
 
-
-/* ================================
-   ✅ FILE UPLOADER VERDE OSCURO CON TEXTO AMARILLO
-================================ */
+/* ============================================================
+   ✅ FILE UPLOADER VERDE OSCURO + TEXTO AMARILLO
+=============================================================== */
 
 /* Caja del uploader */
 .stFileUploader {
-    background-color: #0F3A21 !important;     /* VERDE MUY OSCURO */
-    border: 2px dashed #2ECC71 !important;    /* VERDE LIMA */
-    border-radius: 12px !important;
-    padding: 15px !important;
+    background-color: #0F3A21 !important;   /* ✅ VERDE OSCURO */
+    border: 2px dashed #26C430 !important;  /* verde fuerte */
+    border-radius: 15px !important;
+    padding: 16px !important;
 }
 
-/* Título y textos dentro del uploader */
-.stFileUploader label,
-.stFileUploader div,
-.stFileUploader span,
-.stFileUploader p {
-    color: #FBDD3B !important;      /* AMARILLO LEGIBLE */
+/* Texto dentro del uploader */
+.stFileUploader * {
+    color: #FFD84D !important;              /* ✅ AMARILLO LEGIBLE */
 }
 
 /* Botón Browse files */
 .stFileUploader button {
-    background-color: #145A32 !important;     /* verde oscuro */
-    border-radius: 8px !important;
+    background-color: #145A32 !important;   /* verde oscuro */
+    color: #FFD84D !important;              /* amarillo */
+    border-radius: 10px !important;
     border: none !important;
-    color: #FBDD3B !important;                /* amarillo */
 }
-
-/* Hover del botón */
 .stFileUploader button:hover {
     background-color: #0E4225 !important;
-    color: #FFE96A !important;
+    color: #FFE279 !important;
 }
 
 
-/* ================================
-   ✅ INPUTS LEÍBLES
-================================ */
+/* ============================================================
+   ✅ INPUTS
+=============================================================== */
+
 input[type=text], input[type=password], textarea {
-    background-color: #FFFFFF !important;
-    color: #1B4B2E !important;
+    color: #1B4B2E !important;              /* ✅ VERDE OSCURO */
+    background-color: white !important;
     border-radius: 10px !important;
-    border: 1.5px solid #9AC89A !important;
+    border: 1.5px solid #9BCFA0 !important;
     padding: 10px !important;
 }
 
 
-/* ================================
+/* ============================================================
    ✅ BOTÓN ANALIZAR
-================================ */
+=============================================================== */
+
 div.stButton > button {
-    background-color: #1FAE3D !important;
+    background-color: #26C430 !important;   /* verde fuerte */
     color: white !important;
     border-radius: 10px !important;
-    padding: 10px 20px !important;
-    border: none !important;
     font-weight: 600 !important;
+    padding: 10px 20px !important;
 }
 div.stButton > button:hover {
-    background-color: #199A34 !important;
+    background-color: #1FA62E !important;
 }
 
 </style>
 """, unsafe_allow_html=True)
-
 
 # =========================================================
 # ✅ HEADER DEL PROYECTO
