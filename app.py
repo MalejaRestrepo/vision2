@@ -15,16 +15,19 @@ st.markdown("""
 
 html, body, .stApp, .main {
     font-family: 'Inter', sans-serif !important;
-    color: #1B4B2E !important;             /* ✅ TEXTO VERDE OSCURO */
+    color: #1B4B2E !important;        /* ✅ TEXTO VERDE OSCURO */
 }
 
-/* ✅ FONDO DEGRADADO MÁS NOTORIO */
+/* ============================================================
+   ✅ FONDO DEGRADADO GLOBAL
+=============================================================== */
 .stApp {
     background: linear-gradient(180deg, #DFF5DA 0%, #E4F8D9 40%, #F5FFF1 100%) !important;
 }
 
+
 /* ============================================================
-   ✅ TOP BAR TRANSPARENTE + ÍCONOS VERDE FUERTE
+   ✅ TOP BAR – TRANSPARENTE + ÍCONOS VERDE FUERTE
 =============================================================== */
 
 /* Fondo transparente */
@@ -33,40 +36,39 @@ header[data-testid="stHeader"] {
     box-shadow: none !important;
 }
 
-/* El contenedor interno también transparente */
+/* Overlay también transparente */
 header[data-testid="stHeader"] > div:first-child {
     background-color: transparent !important;
 }
 
-/* Íconos y el texto Share en VERDE FUERTE */
+/* Íconos y texto Share → VERDE FUERTE */
 header svg, header span, header div {
-    color: #26C430 !important;            /* ✅ VERDE FUERTE */
+    color: #26C430 !important;        /* ✅ VERDE FUERTE */
     fill: #26C430 !important;
     stroke: #26C430 !important;
 }
 
 
 /* ============================================================
-   ✅ FILE UPLOADER VERDE OSCURO + TEXTO AMARILLO
+   ✅ FILE UPLOADER – VERDE OSCURO + TEXTO AMARILLO
 =============================================================== */
 
-/* Caja del uploader */
 .stFileUploader {
-    background-color: #0F3A21 !important;   /* ✅ VERDE OSCURO */
-    border: 2px dashed #26C430 !important;  /* verde fuerte */
+    background-color: #0F3A21 !important;    /* ✅ VERDE OSCURO */
+    border: 2px dashed #26C430 !important;   /* verde fuerte */
     border-radius: 15px !important;
     padding: 16px !important;
 }
 
 /* Texto dentro del uploader */
 .stFileUploader * {
-    color: #FFD84D !important;              /* ✅ AMARILLO LEGIBLE */
+    color: #FFD84D !important;               /* ✅ AMARILLO */
 }
 
-/* Botón Browse files */
+/* Botón Browse files dentro del uploader */
 .stFileUploader button {
-    background-color: #145A32 !important;   /* verde oscuro */
-    color: #FFD84D !important;              /* amarillo */
+    background-color: #145A32 !important;
+    color: #FFD84D !important;
     border-radius: 10px !important;
     border: none !important;
 }
@@ -77,11 +79,11 @@ header svg, header span, header div {
 
 
 /* ============================================================
-   ✅ INPUTS
+   ✅ INPUTS (clave API, campos, etc)
 =============================================================== */
 
 input[type=text], input[type=password], textarea {
-    color: #1B4B2E !important;              /* ✅ VERDE OSCURO */
+    color: #1B4B2E !important;               /* verde oscuro */
     background-color: white !important;
     border-radius: 10px !important;
     border: 1.5px solid #9BCFA0 !important;
@@ -90,18 +92,34 @@ input[type=text], input[type=password], textarea {
 
 
 /* ============================================================
-   ✅ BOTÓN ANALIZAR
+   ✅ BOTÓN PRINCIPAL
 =============================================================== */
 
 div.stButton > button {
-    background-color: #26C430 !important;   /* verde fuerte */
+    background-color: #26C430 !important;
     color: white !important;
     border-radius: 10px !important;
-    font-weight: 600 !important;
     padding: 10px 20px !important;
+    font-weight: 600 !important;
+    border: none !important;
 }
 div.stButton > button:hover {
     background-color: #1FA62E !important;
+}
+
+
+/* ============================================================
+   ✅ LABELS → NARANJA LEGIBLE
+=============================================================== */
+
+/* Labels de cualquier input, checkbox, toggle */
+label, .stCheckbox label, .stTextInput label, .stTextArea label, .stToggle label {
+    color: #E69A2A !important;               /* ✅ NARANJA FUERTE */
+}
+
+/* Textos internos que Streamlit pone blancos */
+.css-1p0v0b0, .css-17eq0hr, .css-1vbkxwb, .stRadio label {
+    color: #E69A2A !important;
 }
 
 </style>
