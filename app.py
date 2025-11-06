@@ -5,96 +5,112 @@ from openai import OpenAI
 import openai
 from PIL import Image
 
-# ---------------------------------------------------------
-# ✅ DISEÑO Y ESTILO PERSONALIZADO — TEMA: MADUREZ DE FRUTAS
-# ---------------------------------------------------------
+
+# =========================================================
+# ✅ CSS — Tema verde + modo claro + limpieza total
+# =========================================================
+
 st.markdown("""
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-html, body, [class*="css"] {
-    font-family: 'Poppins', sans-serif;
+html, body, .stApp, .main {
+    background-color: #E8F5E9 !important;   /* verde claro */
+    color: #2E2E2E !important;
+    font-family: 'Poppins', sans-serif !important;
 }
 
-/* Fondo con patrón sutil */
-body {
-    background: #FFFDF6;
-}
-
-/* Encabezado estilo "máquina clasificadora" */
+/* HEADER */
 .header {
     background: linear-gradient(90deg, #FFE27A, #FFCD38);
-    padding: 25px;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: 32px;
+    border-radius: 18px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.10);
     text-align: center;
-    margin-bottom: 25px;
+    margin-top: 25px;
+    margin-bottom: 28px;
 }
 .header h1 {
-    color: #4A4A4A;
+    color: #3A3A3A;
     font-weight: 700;
-    margin: 0;
+    font-size: 32px;
 }
 
-/* Cards */
+/* CARDS */
 .box {
-    background: white;
+    background: #FFFFFF;
     padding: 22px;
     border-radius: 14px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     margin-bottom: 25px;
 }
 
-/* Botón */
+/* BOTÓN */
 div.stButton > button {
-    background-color: #7ACB3F;
-    color: white;
-    border-radius: 12px;
-    padding: 0.6rem 1.2rem;
-    border: none;
-    font-weight: 600;
-    transition: 0.2s;
+    background-color: #7ACB3F !important;
+    color: white !important;
+    border-radius: 12px !important;
+    padding: 12px 22px !important;
+    border: none !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    transition: 0.2s ease !important;
 }
 div.stButton > button:hover {
-    background-color: #6BB634;
+    background-color: #6BB634 !important;
     transform: scale(1.03);
 }
 
-/* File uploader */
-.css-1p0v0b0 {
-    border-radius: 12px;
-    border: 2px dashed #FFD85E !important;
+/* INPUTS */
+input[type=password], input[type=text] {
+    border-radius: 12px !important;
+    border: 2px solid #FFD760 !important;
+    padding: 8px 10px !important;
+    background:white !important;
 }
 
-/* API input */
-input[type=password], input[type=text] {
-    border-radius: 10px !important;
-    border: 2px solid #FFD760 !important;
+/* FILE UPLOADER */
+.stFileUploader {
+    border: 2px dashed #FFC83D !important;
+    border-radius: 12px !important;
+    padding: 10px !important;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background-color: #D6EED3 !important;
+}
+
+/* Fix Streamlit unwanted wrappers */
+.css-1cpxqw2, .css-ocqkz7, .e1f1d6gn0 {
+    background-color: transparent !important;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
 
-# ---------------------------------------------------------
-# ✅ ENCABEZADO TEMÁTICO
-# ---------------------------------------------------------
+
+# =========================================================
+# ✅ ENCABEZADO
+# =========================================================
 
 st.markdown("""
-<div class='header'>
+<div class="header">
     <h1>🍌 Analizador de Frutas con IA</h1>
-    <p style="font-size:17px; margin-top:6px; color:#5A5A5A;">
-        Esta herramienta utiliza inteligencia artificial para analizar una imagen y ayudarte a interpretar su contenido.  
-        Pensado para proyectos de clasificación de madurez de frutas, visión artificial y aplicaciones educativas.
+    <p style="font-size:17px; margin-top:8px; color:#4A4A4A;">
+        Esta herramienta utiliza inteligencia artificial para describir el contenido de cualquier imagen. <br>
+        Diseñada para proyectos de clasificación de madurez de frutas, visión artificial y aplicaciones educativas.
     </p>
 </div>
 """, unsafe_allow_html=True)
 
 
-# ---------------------------------------------------------
-# ✅ SUBIR IMAGEN — EN UNA CARD BONITA
-# ---------------------------------------------------------
+
+# =========================================================
+# ✅ SUBIR IMAGEN
+# =========================================================
 
 st.markdown("<div class='box'>", unsafe_allow_html=True)
 st.subheader("📤 Sube una imagen para analizar")
@@ -102,9 +118,13 @@ uploaded_file = st.file_uploader("Selecciona una imagen", type=["jpg", "png", "j
 st.markdown("</div>", unsafe_allow_html=True)
 
 
-# API KEY
+
+# =========================================================
+# ✅ API KEY
+# =========================================================
+
 st.markdown("<div class='box'>", unsafe_allow_html=True)
-ke = st.text_input("🔐 Ingresa tu Clave API:", type="password")
+ke = st.text_input("🔐 Ingresa tu clave API", type="password")
 st.markdown("</div>", unsafe_allow_html=True)
 
 os.environ['OPENAI_API_KEY'] = ke
@@ -112,9 +132,10 @@ api_key = os.environ['OPENAI_API_KEY']
 client = OpenAI(api_key=api_key)
 
 
-# ---------------------------------------------------------
-# ✅ MOSTRAR IMAGEN
-# ---------------------------------------------------------
+
+# =========================================================
+# ✅ PREVIEW DE LA IMAGEN
+# =========================================================
 
 if uploaded_file:
     st.markdown("<div class='box'>", unsafe_allow_html=True)
@@ -123,43 +144,51 @@ if uploaded_file:
     st.markdown("</div>", unsafe_allow_html=True)
 
 
-# ---------------------------------------------------------
-# ✅ DETALLES OPCIONALES
-# ---------------------------------------------------------
+
+# =========================================================
+# ✅ DETALLES EXTRA
+# =========================================================
 
 st.markdown("<div class='box'>", unsafe_allow_html=True)
-show_details = st.toggle("📝 ¿Deseas agregar más detalles sobre la imagen?")
+show_details = st.toggle("📝 Agregar contexto adicional a la imagen")
 if show_details:
-    additional_details = st.text_area("Escribe contexto adicional aquí:")
+    additional_details = st.text_area("Escribe tu contexto aquí:")
 st.markdown("</div>", unsafe_allow_html=True)
 
 
-# ---------------------------------------------------------
-# ✅ BOTÓN DE ANÁLISIS
-# ---------------------------------------------------------
+
+# =========================================================
+# ✅ BOTÓN ANALIZAR
+# =========================================================
 
 st.markdown("<div class='box'>", unsafe_allow_html=True)
 analyze_button = st.button("🔍 Analizar imagen con IA")
 st.markdown("</div>", unsafe_allow_html=True)
 
 
-# ---------------------------------------------------------
-# ✅ PROCESO DE ANÁLISIS
-# ---------------------------------------------------------
+
+# =========================================================
+# ✅ FUNCIÓN ENCODE
+# =========================================================
 
 def encode_image(image_file):
     return base64.b64encode(image_file.getvalue()).decode("utf-8")
 
-if uploaded_file and api_key and analyze_button:
 
+
+# =========================================================
+# ✅ ANALIZAR IMAGEN
+# =========================================================
+
+if uploaded_file and api_key and analyze_button:
     with st.spinner("🍃 Analizando imagen..."):
 
         base64_image = encode_image(uploaded_file)
 
-        prompt_text = "Describe con detalle lo que ves en esta imagen. Explica en español."
+        prompt_text = "Describe detalladamente lo que ves en esta imagen, en español."
 
         if show_details and additional_details:
-            prompt_text += f"\n\nDetalles del usuario:\n{additional_details}"
+            prompt_text += f"\nDetalles del usuario: {additional_details}"
 
         try:
             response = openai.chat.completions.create(
@@ -170,11 +199,11 @@ if uploaded_file and api_key and analyze_button:
                         {"type": "text", "text": prompt_text},
                         {
                             "type": "image_url",
-                            "image_url": { "url": f"data:image/jpeg;base64,{base64_image}" },
+                            "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"},
                         },
                     ],
                 }],
-                max_tokens=300,
+                max_tokens=350,
             )
 
             texto = response.choices[0].message.content
@@ -189,6 +218,8 @@ if uploaded_file and api_key and analyze_button:
 
 else:
     if analyze_button and not uploaded_file:
-        st.warning("⚠️ Sube una imagen para analizar.")
+        st.warning("⚠️ Sube una imagen antes de analizar.")
     if not api_key:
-        st.warning("⚠️ Ingresa tu API key para continuar.")
+        st.warning("⚠️ Ingresa tu clave API.")
+
+
