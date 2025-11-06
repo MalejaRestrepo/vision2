@@ -4,6 +4,7 @@ import base64
 from openai import OpenAI
 import openai
 from PIL import Image
+from pathlib import Path
 
 # =========================================================
 # ✅ CSS — Fondo degradado + texto verde oscuro + NO CARDS
@@ -94,7 +95,7 @@ div.stButton > button:hover {
 }
 
 /* =========================
-   Labels naranjas (incluye casos comunes)
+   Labels naranjas
 ========================= */
 label,
 .stCheckbox label,
@@ -111,22 +112,30 @@ div[data-testid="stWidgetLabel"] p {
 }
 
 /* =========================
-   FIX robusto para el TOGGLE (este era el que faltaba)
-   Cubrimos múltiples variantes del DOM de Streamlit.
+   FIX robusto para el TOGGLE
 ========================= */
 .stSwitch, .stSwitch * {
-  color: #E69A2A !important;            /* naranja fuerte */
+  color: #E69A2A !important;
 }
 div[data-testid="stSwitch"], div[data-testid="stSwitch"] * {
-  color: #E69A2A !important;            /* naranja fuerte */
+  color: #E69A2A !important;
 }
-/* En algunos temas el texto queda en un contenedor hermano de la palanca */
 div[data-testid="stHorizontalBlock"] > div:has(div[role="switch"]) + div *,
 div[role="switch"] ~ * {
   color: #E69A2A !important;
 }
 
-/* (Compat: si :has no aplica, las reglas anteriores ya lo cubren) */
+/* =========================
+   Imagen centrada
+========================= */
+.img-center {
+    display: block;
+    margin: 14px auto 24px auto;
+    max-width: 520px;
+    width: 90%;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
 
 </style>
 """, unsafe_allow_html=True)
@@ -145,6 +154,25 @@ st.markdown("""
     Clasificación visual asistida por inteligencia artificial
 </p>
 """, unsafe_allow_html=True)
+
+
+# =========================================================
+# ✅ IMAGEN CENTRADA "verduras"
+# =========================================================
+
+def render_center_image(filename_base="verduras"):
+    for ext in (".png", ".jpg", ".jpeg", ".webp"):
+        p = Path(f"{filename_base}{ext}")
+        if p.exists():
+            img_bytes = p.read_bytes()
+            b64 = base64.b64encode(img_bytes).decode()
+            st.markdown(
+                f'<img src="data:image/{ext[1:]};base64,{b64}" class="img-center" />',
+                unsafe_allow_html=True
+            )
+            return
+
+render_center_image()
 
 
 # =========================================================
