@@ -29,25 +29,33 @@ html, body, .stApp, .main {
   background: linear-gradient(180deg, #DFF5DA 0%, #E4F8D9 40%, #F5FFF1 100%) !important;
 }
 
-/* =========================
-   Top bar transparente + iconos verde fuerte
-========================= */
+
+/* ============================================================
+   ✅ TOP BAR – Verde claro propio + íconos BLANCOS
+=============================================================== */
+
+/* Barra superior */
 header[data-testid="stHeader"] {
-  background-color: transparent !important;
-  box-shadow: none !important;
+  background-color: #CDEFCB !important;   /* ✅ Verde claro propio */
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05) !important;
 }
+
+/* Contenedor interno */
 header[data-testid="stHeader"] > div:first-child {
   background-color: transparent !important;
 }
+
+/* Íconos y texto → BLANCO */
 header svg, header span, header div {
-  color: #26C430 !important;            /* verde fuerte */
-  fill: #26C430 !important;
-  stroke: #26C430 !important;
+  color: #FFFFFF !important;             /* ✅ BLANCO */
+  fill: #FFFFFF !important;
+  stroke: #FFFFFF !important;
 }
 
-/* =========================
-   File Uploader: verde oscuro + texto amarillo
-========================= */
+
+/* ============================================================
+   ✅ FILE UPLOADER – VERDE OSCURO + TEXTO AMARILLO
+=============================================================== */
 .stFileUploader {
   background-color: #0F3A21 !important; /* verde oscuro */
   border: 2px dashed #26C430 !important;
@@ -55,7 +63,7 @@ header svg, header span, header div {
   padding: 16px !important;
 }
 .stFileUploader * {
-  color: #FFD84D !important;            /* amarillo legible */
+  color: #FFD84D !important;            /* amarillo */
 }
 .stFileUploader button {
   background-color: #145A32 !important;
@@ -68,9 +76,10 @@ header svg, header span, header div {
   color: #FFE279 !important;
 }
 
-/* =========================
-   Inputs
-========================= */
+
+/* ============================================================
+   ✅ INPUTS
+=============================================================== */
 input[type=text], input[type=password], textarea {
   color: #1B4B2E !important;
   background-color: white !important;
@@ -79,9 +88,10 @@ input[type=text], input[type=password], textarea {
   padding: 10px !important;
 }
 
-/* =========================
-   Botón principal
-========================= */
+
+/* ============================================================
+   ✅ BOTÓN PRINCIPAL
+=============================================================== */
 div.stButton > button {
   background-color: #26C430 !important;
   color: white !important;
@@ -94,9 +104,10 @@ div.stButton > button:hover {
   background-color: #1FA62E !important;
 }
 
-/* =========================
-   Labels naranjas
-========================= */
+
+/* ============================================================
+   ✅ LABELS NARANJAS
+=============================================================== */
 label,
 .stCheckbox label,
 .stTextInput label,
@@ -111,9 +122,10 @@ div[data-testid="stWidgetLabel"] p {
   color: #E69A2A !important;            /* naranja fuerte */
 }
 
-/* =========================
-   FIX robusto para el TOGGLE
-========================= */
+
+/* ============================================================
+   ✅ FIX ROBUSTO PARA EL TOGGLE
+=============================================================== */
 .stSwitch, .stSwitch * {
   color: #E69A2A !important;
 }
@@ -125,9 +137,10 @@ div[role="switch"] ~ * {
   color: #E69A2A !important;
 }
 
-/* =========================
-   Imagen centrada
-========================= */
+
+/* ============================================================
+   ✅ Imagen centrada debajo del título
+=============================================================== */
 .img-center {
     display: block;
     margin: 14px auto 24px auto;
@@ -139,7 +152,6 @@ div[role="switch"] ~ * {
 
 </style>
 """, unsafe_allow_html=True)
-
 
 
 # =========================================================
