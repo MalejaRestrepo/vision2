@@ -18,6 +18,7 @@ html, body, .stApp, .main {
     color: #1B4B2E !important;        /* ✅ TEXTO VERDE OSCURO */
 }
 
+
 /* ============================================================
    ✅ FONDO DEGRADADO GLOBAL
 =============================================================== */
@@ -36,14 +37,14 @@ header[data-testid="stHeader"] {
     box-shadow: none !important;
 }
 
-/* Overlay también transparente */
+/* Contenedor interno transparente */
 header[data-testid="stHeader"] > div:first-child {
     background-color: transparent !important;
 }
 
 /* Íconos y texto Share → VERDE FUERTE */
 header svg, header span, header div {
-    color: #26C430 !important;        /* ✅ VERDE FUERTE */
+    color: #26C430 !important;
     fill: #26C430 !important;
     stroke: #26C430 !important;
 }
@@ -54,18 +55,18 @@ header svg, header span, header div {
 =============================================================== */
 
 .stFileUploader {
-    background-color: #0F3A21 !important;    /* ✅ VERDE OSCURO */
+    background-color: #0F3A21 !important;    /* verde oscuro */
     border: 2px dashed #26C430 !important;   /* verde fuerte */
     border-radius: 15px !important;
     padding: 16px !important;
 }
 
-/* Texto dentro del uploader */
+/* Texto del uploader */
 .stFileUploader * {
-    color: #FFD84D !important;               /* ✅ AMARILLO */
+    color: #FFD84D !important;               /* amarillo */
 }
 
-/* Botón Browse files dentro del uploader */
+/* Botón browse */
 .stFileUploader button {
     background-color: #145A32 !important;
     color: #FFD84D !important;
@@ -79,7 +80,7 @@ header svg, header span, header div {
 
 
 /* ============================================================
-   ✅ INPUTS (clave API, campos, etc)
+   ✅ INPUTS
 =============================================================== */
 
 input[type=text], input[type=password], textarea {
@@ -112,18 +113,31 @@ div.stButton > button:hover {
    ✅ LABELS → NARANJA LEGIBLE
 =============================================================== */
 
-/* Labels de cualquier input, checkbox, toggle */
-label, .stCheckbox label, .stTextInput label, .stTextArea label, .stToggle label {
-    color: #E69A2A !important;               /* ✅ NARANJA FUERTE */
+label,
+.stCheckbox label,
+.stTextInput label,
+.stTextArea label,
+.stToggle label,
+.css-1p0v0b0,
+.css-17eq0hr,
+.css-1vbkxwb,
+.stRadio label {
+    color: #E69A2A !important;               /* naranja fuerte */
 }
 
-/* Textos internos que Streamlit pone blancos */
-.css-1p0v0b0, .css-17eq0hr, .css-1vbkxwb, .stRadio label {
-    color: #E69A2A !important;
+
+/* ============================================================
+   ✅ TOGGLE (el que te faltaba)
+=============================================================== */
+
+/* etiqueta del toggle */
+.stSwitch label, .stSwitch span {
+    color: #E69A2A !important;               /* naranja */
 }
 
 </style>
 """, unsafe_allow_html=True)
+
 
 # =========================================================
 # ✅ HEADER DEL PROYECTO
