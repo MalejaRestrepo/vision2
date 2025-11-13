@@ -35,6 +35,7 @@ html, body, .stApp, .main {
   background: linear-gradient(180deg, #DFF5DA 0%, #E4F8D9 40%, #F5FFF1 100%) !important;
 }
 
+/* Top bar */
 header[data-testid="stHeader"] {
   background-color: #CDEFCB !important;
 }
@@ -90,7 +91,6 @@ label, .stTextInput label, .stToggle label, .stTextArea label {
 </style>
 """, unsafe_allow_html=True)
 
-
 # =========================================================
 # HEADER
 # =========================================================
@@ -102,7 +102,6 @@ st.markdown("""
     Clasificación visual asistida por inteligencia artificial
 </p>
 """, unsafe_allow_html=True)
-
 
 # =========================================================
 # IMAGEN "verduras"
@@ -119,13 +118,18 @@ def render_center_image(filename_base="verduras"):
             )
 render_center_image()
 
-
 # =========================================================
 # UPLOADER
 # =========================================================
 st.subheader("📤 Sube una imagen para analizar")
 uploaded_file = st.file_uploader("Selecciona una imagen", type=["jpg", "png", "jpeg"])
 
+# ============================
+# 🔥 VISTA PREVIA RESTAURADA
+# ============================
+if uploaded_file:
+    st.subheader("🖼 Vista previa de la imagen")
+    st.image(uploaded_file, use_container_width=True)
 
 # =========================================================
 # API KEY
@@ -135,7 +139,6 @@ os.environ["OPENAI_API_KEY"] = ke
 api_key = ke
 client = OpenAI(api_key=api_key)
 
-
 # =========================================================
 # TOGGLE CONTEXTO
 # =========================================================
@@ -143,13 +146,11 @@ show_details = st.toggle("📝 Agregar contexto adicional a la imagen")
 if show_details:
     additional_details = st.text_area("Detalles:")
 
-
 # =========================================================
 # FUNCIÓN ENCODE
 # =========================================================
 def encode_image(img):
     return base64.b64encode(img.getvalue()).decode("utf-8")
-
 
 # =========================================================
 # BOTÓN ANALIZAR
@@ -160,7 +161,7 @@ if uploaded_file and api_key and st.button("🔍 Analizar imagen con IA"):
         base64_image = encode_image(uploaded_file)
 
         prompt = """
-Eres un clasificador de frutas. 
+Eres un clasificador de frutas.
 Devuelve SOLO una palabra:
 "maduro" o "no maduro".
 """
