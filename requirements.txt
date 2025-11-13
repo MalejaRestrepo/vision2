@@ -1,2 +1,4 @@
-streamlit 
+streamlit
 openai
+pillow
+paho-mqtt
