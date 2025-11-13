@@ -11,9 +11,9 @@ import json
 # =========================================================
 # MQTT CONFIG — WOKWI / ESP32
 # =========================================================
-MQTT_BROKER = "157.230.214.127"    # TU BROKER
+MQTT_BROKER = "157.230.214.127"
 MQTT_PORT = 1883
-MQTT_TOPIC = "cmqtt_a"             # El canal que escucha tu ESP32
+MQTT_TOPIC = "cmqtt_a"
 
 mqtt_client = mqtt.Client()
 mqtt_client.connect(MQTT_BROKER, MQTT_PORT, 60)
@@ -35,39 +35,22 @@ html, body, .stApp, .main {
   background: linear-gradient(180deg, #DFF5DA 0%, #E4F8D9 40%, #F5FFF1 100%) !important;
 }
 
-/* ============================================================
-   TOP BAR Verde + iconos blancos
-=============================================================== */
 header[data-testid="stHeader"] {
   background-color: #CDEFCB !important;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05) !important;
 }
 header svg, header span, header div {
   color: #FFFFFF !important;
-  fill: #FFFFFF !important;
-  stroke: #FFFFFF !important;
 }
 
-/* ============================================================
-   FILE UPLOADER
-=============================================================== */
+/* File uploader */
 .stFileUploader {
   background-color: #0F3A21 !important;
   border: 2px dashed #26C430 !important;
   border-radius: 15px !important;
 }
 .stFileUploader * { color: #FFD84D !important; }
-.stFileUploader button {
-  background-color: #145A32 !important;
-  color: #FFD84D !important;
-}
-.stFileUploader button:hover {
-  background-color: #0E4225 !important;
-}
 
-/* ============================================================
-   INPUTS
-=============================================================== */
+/* Inputs */
 input[type=text], input[type=password], textarea {
   color: #1B4B2E !important;
   background-color: white !important;
@@ -75,9 +58,7 @@ input[type=text], input[type=password], textarea {
   border: 1.5px solid #9BCFA0 !important;
 }
 
-/* ============================================================
-   BOTÓN PRINCIPAL
-=============================================================== */
+/* Botón */
 div.stButton > button {
   background-color: #26C430 !important;
   color: white !important;
@@ -87,34 +68,28 @@ div.stButton > button:hover {
   background-color: #1FA62E !important;
 }
 
-/* ============================================================
-   LABELS NARANJAS
-=============================================================== */
+/* Labels */
 label, .stTextInput label, .stToggle label, .stTextArea label {
   color: #E69A2A !important;
 }
 
-/* ============================================================
-   FIX PARA TOGGLE
-=============================================================== */
+/* Toggle fix */
 .stSwitch *, div[data-testid="stSwitch"] * {
   color: #E69A2A !important;
 }
 
-/* ============================================================
-   Imagen centrada
-=============================================================== */
+/* Imagen centrada */
 .img-center {
     display: block;
     margin: 14px auto 24px auto;
     max-width: 520px;
     width: 90%;
     border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
 
 </style>
 """, unsafe_allow_html=True)
+
 
 # =========================================================
 # HEADER
@@ -127,6 +102,7 @@ st.markdown("""
     Clasificación visual asistida por inteligencia artificial
 </p>
 """, unsafe_allow_html=True)
+
 
 # =========================================================
 # IMAGEN "verduras"
@@ -143,11 +119,13 @@ def render_center_image(filename_base="verduras"):
             )
 render_center_image()
 
+
 # =========================================================
 # UPLOADER
 # =========================================================
 st.subheader("📤 Sube una imagen para analizar")
 uploaded_file = st.file_uploader("Selecciona una imagen", type=["jpg", "png", "jpeg"])
+
 
 # =========================================================
 # API KEY
@@ -157,6 +135,7 @@ os.environ["OPENAI_API_KEY"] = ke
 api_key = ke
 client = OpenAI(api_key=api_key)
 
+
 # =========================================================
 # TOGGLE CONTEXTO
 # =========================================================
@@ -164,11 +143,13 @@ show_details = st.toggle("📝 Agregar contexto adicional a la imagen")
 if show_details:
     additional_details = st.text_area("Detalles:")
 
+
 # =========================================================
 # FUNCIÓN ENCODE
 # =========================================================
 def encode_image(img):
     return base64.b64encode(img.getvalue()).decode("utf-8")
+
 
 # =========================================================
 # BOTÓN ANALIZAR
@@ -180,11 +161,8 @@ if uploaded_file and api_key and st.button("🔍 Analizar imagen con IA"):
 
         prompt = """
 Eres un clasificador de frutas. 
-
-Devuelve SOLO:
-- "maduro" si la fruta está madura
-- "no maduro" si la fruta NO está madura
-SIN explicar nada más.
+Devuelve SOLO una palabra:
+"maduro" o "no maduro".
 """
 
         if show_details:
@@ -210,13 +188,12 @@ SIN explicar nada más.
             st.success(result)
 
             # =========================================================
-            # LÓGICA → MQTT HACIA EL ESP32
+            # MQTT HACIA ESP32 — SOLO MANDAR ESTADO
             # =========================================================
-
             if "maduro" in result:
-                payload = {"Act1": "ON", "Analog": 100}
+                payload = {"estado": "maduro"}
             else:
-                payload = {"Act1": "OFF", "Analog": 0}
+                payload = {"estado": "no_maduro"}
 
             mqtt_client.publish(MQTT_TOPIC, json.dumps(payload))
 
