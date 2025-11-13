@@ -124,9 +124,7 @@ render_center_image()
 st.subheader("📤 Sube una imagen para analizar")
 uploaded_file = st.file_uploader("Selecciona una imagen", type=["jpg", "png", "jpeg"])
 
-# ============================
-# 🔥 VISTA PREVIA RESTAURADA
-# ============================
+# Vista previa
 if uploaded_file:
     st.subheader("🖼 Vista previa de la imagen")
     st.image(uploaded_file, use_container_width=True)
@@ -162,7 +160,7 @@ if uploaded_file and api_key and st.button("🔍 Analizar imagen con IA"):
 
         prompt = """
 Eres un clasificador de frutas.
-Devuelve SOLO una palabra:
+Devuelve SOLO una palabra exacta:
 "maduro" o "no maduro".
 """
 
@@ -183,21 +181,20 @@ Devuelve SOLO una palabra:
                 max_tokens=30,
             )
 
-            result = response.choices[0].message.content.lower().strip()
+            result = response.choices[0].message.content.strip().lower()
 
             st.subheader("📌 Resultado del modelo:")
             st.success(result)
 
             # =========================================================
-            # MQTT HACIA ESP32 — SOLO MANDAR ESTADO
+            # MQTT HACIA ESP32 — LÓGICA CORREGIDA
             # =========================================================
-            if "maduro" in result:
+            if result == "maduro":
                 payload = {"estado": "maduro"}
             else:
                 payload = {"estado": "no_maduro"}
 
             mqtt_client.publish(MQTT_TOPIC, json.dumps(payload))
-
             st.info(f"📡 Enviado a Wokwi: {payload}")
 
         except Exception as e:
